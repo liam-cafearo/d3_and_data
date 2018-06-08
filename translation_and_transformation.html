@@ -38,9 +38,14 @@
             // .attr("y", 0)
             // .attr("width", 0)
             .attr("height", 0)
-            // apply transition which will take effect when the above values change
             .transition().duration(5000)
-            .attr("height", function(d){return d});
+            .attr("x", function(d,i){return i * (svgWidth / myData.length);}) /* multiply the index by the width --keeps scale */
+            .attr("y", function(d){return svgHeight - d * 5;}) /* height is 300 */
+            .attr("width", svgWidth / myData.length - spacing) /* keeps scale */
+            .attr("height", function(d){return d * 5;});
+            // apply transition which will take effect when the above values change
+            
+            // .attr("height", function(d){return d});
     </script>
 
 </body>
