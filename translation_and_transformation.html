@@ -28,6 +28,8 @@
                 // to move up in the y axis, we need to use negative numbers
 
         g.selectAll("rect")
+        /* Don't forget that the below happens in order which is 
+        why some effects may not work if in incorrect order. */
             .data(myData)
             .enter()
             .append("rect")
@@ -38,7 +40,10 @@
             // .attr("y", 0)
             // .attr("width", 0)
             .attr("height", 0)
+            // challenge asks you to put opacity in.
+            .style("opacity", 0) // adds zero opacity on transsition start
             .transition().duration(5000)
+            .style("opacity", 1) // at transition end, full opacity returns
             .attr("x", function(d,i){return i * (svgWidth / myData.length);}) /* multiply the index by the width --keeps scale */
             .attr("y", function(d){return svgHeight - d * 5;}) /* height is 300 */
             .attr("width", svgWidth / myData.length - spacing) /* keeps scale */
